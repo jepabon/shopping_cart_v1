@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div ng-init="load_products()">
+        <div ng-repeat="product in products">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img style="max-width: 10rem; max-height: 10rem;" src="{$ product.image $}" alt="Image Not Found">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="align-top">
+                                {$ product.name $}
+                            </div>
+                            <div class="align-bottom">
+                                {$ product.price|currency:'$' $}
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <input class="col-md-3" type="number" ng-init="product.amount=1" ng-model="product.amount">
+                            <a class="btn" ng-click="addProduct(product)"><i class="fa fa-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="col-md-6 text-left">
+                <a class="btn btn-primary" ng-if="previous" ng-click="load_products(previous)">Anterior</a>
+            </div>
+            <div class="col-md-6 text-right">
+                <a class="btn btn-primary" ng-if="next" ng-click="load_products(next)">Siguiente</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
