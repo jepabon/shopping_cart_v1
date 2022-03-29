@@ -15,6 +15,15 @@ class OrderViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return self.request.user.order_set.all()
+    
+    @action(methods=['get'], detail=False, name="get_count_items_active_order")
+    def get_count_items_active_order(self, request):
+        active_order = self.request.user.order_set.filter(confirmed=False).first()
+
+        if active_order is not None:
+            return Response(active_order.item_set.count())
+        else:
+            return Response({'status': 'Order not found'})
 
     @action(methods=['get'], detail=False, name="get_active_order")
     def get_active_order(self, request):

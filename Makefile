@@ -47,3 +47,12 @@ makemigrations_dev:
 
 migrate_dev:
 	docker-compose exec web_dev python manage.py migrate --noinput
+
+dumpdata_dev:
+	docker-compose run --rm web_dev python manage.py dumpdata --indent 4
+
+loaddata_dev:
+	docker-compose run --rm web_dev python manage.py loaddata 
+
+backup_dev:
+	docker-compose run --rm web_dev psql -h db_dev -U shopping_cart -p shopping_cart -d shopping_cart_dev 

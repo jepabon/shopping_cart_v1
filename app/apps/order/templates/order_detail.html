@@ -7,39 +7,7 @@
 
 {% block content %}
 
-<div ng-controller="order_controller"ng-init="load_active_order()">
-    <div ng-repeat="product in products">
-        <div class="card mb-3">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <img style="max-width: 10rem; max-height: 10rem;" src="{$ product.image_path $}" alt="Image Not Found">
-                    </div>
-                    <div class="col-md-4">
-                        <div class="align-top">
-                            {$ product.name $}
-                        </div>
-                        <div class="align-bottom">
-                            {$ product.price|currency:'$' $}
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        {$ product.amount $}
-                        <a class="btn" ng-click="removeProduct(product)"><i class="fa fa-trash"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div>
-            Total: {$ order.total|currency:'$' $}
-        </div>
-        <div>
-            <a class="btn btn-primary" ng-click="confirmed_order()">Confirmar</a>
-            <a class="btn btn-primary" ng-click="clean_order()">Limpiar</a>
-        </div>
-    </div>
+<div id="product-list-order">
 </div>
 
 {% endblock %}
